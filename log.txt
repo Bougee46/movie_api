@@ -17,3 +17,5 @@ Timestamp: Wed Mar 29 2023 15:09:23 GMT+0200 (Central European Summer Time)
 ::1 - - [02/Apr/2023:12:11:29 +0000] "GET /myAwesomeStaticFiles/ HTTP/1.1" 404 160 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
 ::1 - - [02/Apr/2023:12:11:46 +0000] "GET /myAwesomeStaticFiles/ HTTP/1.1" 404 160 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
 ::1 - - [02/Apr/2023:12:11:47 +0000] "GET /myAwesomeStaticFiles/ HTTP/1.1" 404 160 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [02/Apr/2023:12:25:02 +0000] "GET /movies HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [02/Apr/2023:12:25:05 +0000] "GET /movies HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
