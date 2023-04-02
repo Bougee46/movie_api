@@ -1,4 +1,8 @@
 const express = require('express');
+    morgan = require('morgan');
+    fs = require('fs');
+    path = require('path');
+
 const app = express();
 
 let myLogger = (req, res, next) => {
@@ -11,8 +15,12 @@ let requestTime = (req, res, next) => {
   next();
 };
 
+let accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
+
 app.use(myLogger);
 app.use(requestTime);
+app.use(morgan('combined', {stream: accessLogStream}));
+app.use('/myAwesomeStaticFiles/', express.static('public'));
 
 app.get('/', (req, res) => {
   let responseText = 'Welcome to my app!';
@@ -26,6 +34,13 @@ app.get('/secreturl', (req, res) => {
   res.send(responseText);
 
 });
+
+app.get('/movies' , (req, res) => {
+    const err = new Error('diese schnittstelle ist noch nicht implementiert');
+    err.status = 404; 
+    res.send(err);
+})
+
 
 app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
