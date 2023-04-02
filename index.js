@@ -1,7 +1,7 @@
 const express = require('express');
-    morgan = require('morgan');
-    fs = require('fs');
-    path = require('path');
+let morgan = require('morgan');
+let fs = require('fs');
+const  path = require('path');
 
 const app = express();
 
@@ -80,14 +80,19 @@ app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
 
-app.use(express.static('public'));
+app.get('/documentation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'documentation.html'));
+  });
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('common'));
 
-app.use((err, req, res, next) => {
+app.use(function(err, req, res, next) {
     console.error(err.stack);
     res.status(500).send('Something went wrong!');
 });
 
-app.listen(8080, () => {
-  console.log('Your app is listening on port 8080.');
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${8080}`);
 });
