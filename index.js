@@ -4,6 +4,7 @@ let fs = require('fs');
 const  path = require('path');
 
 const app = express();
+app.use(express.json()); 
 
 let myLogger = (req, res, next) => {
   console.log(req.url);
@@ -69,6 +70,11 @@ app.get('/', (req, res) => {
   res.send(responseText);
 });
 
+app.post('/alternate', (req, res) => {
+  let responseText = 'antwort: ' + req.body.greet;
+  res.send(responseText);
+});
+
 app.get('/secreturl', (req, res) => {
   let responseText = 'This is a secret url with super top-secret content.';
   responseText += '<small>Requested at: ' + req.requestTime + '</small>';
@@ -89,7 +95,7 @@ app.use(morgan('common'));
 
 app.use(function(err, req, res, next) {
     console.error(err.stack);
-    res.status(500).send('Something went wrong!');
+    res.status(500).send('Something went wrong! ' + err.stack);
 });
 
 const PORT = process.env.PORT || 8080;
