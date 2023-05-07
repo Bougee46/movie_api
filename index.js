@@ -86,6 +86,10 @@ app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
 
+app.get('/students', (req, res) => {
+  res.send('Successful GET request returning data on all the students');
+});
+
 app.get('/documentation', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'documentation.html'));
   });
