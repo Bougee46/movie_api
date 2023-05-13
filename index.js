@@ -6,6 +6,10 @@ const  path = require('path');
 const app = express();
 app.use(express.json()); 
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 let myLogger = (req, res, next) => {
   console.log(req.url);
   next();
@@ -18,6 +22,7 @@ let requestTime = (req, res, next) => {
 
 app.use(myLogger);
 app.use(requestTime);
+app.use(passport.initialize());
 
 let topMovies = [
     {
@@ -82,9 +87,25 @@ app.get('/secreturl', (req, res) => {
 
 });
 
-app.get('/movies', (req, res) => {
-    res.json(topMovies);
+app.get('/login', (req, res) => {
+  const { username, password} = req.body;
+  const token = passport.authenticate();
+  console.log(token);
+  console.log(username);
+  console.log(password);
+})
+
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
+
 
 app.get('/students', (req, res) => {
   res.send('Successful GET request returning data on all the students');

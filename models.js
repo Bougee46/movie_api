@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
-const Movies = Models.Movie;
-const Users = Models.User;
+const Movies = Models.Movies;
+const Users = Models.Users;
 
 mongoose.connect('mongodb://localhost:27017/Cf_db', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -33,5 +33,5 @@ let movieSchema = mongoose.Schema({
   let Movie = mongoose.model('Movie', movieSchema);
   let User = mongoose.model('User', userSchema);
   
-  module.exports.Movie = Movie;
-  module.exports.User = User;
+  module.exports.Movies = Movies;
+  module.exports.Users = Users;
